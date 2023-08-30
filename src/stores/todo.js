@@ -9,11 +9,6 @@ export const useTodoStore = defineStore("todo", {
 			{ id: 4, text: "Read for 1 hour", done: false },
 			{ id: 5, text: "Pick up groceries", done: false },
 			{ id: 6, text: "Complete Todo App on Frontend Mentor", done: false },
-			{
-				id: 7,
-				text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi amet magnam voluptas quod. Veniam animi deserunt, culpa incidunt molestiae tenetur illum sit nihil debitis, corporis deleniti, quasi dolorum consectetur excepturi!",
-				done: false,
-			},
 		],
 
 		filters: [
