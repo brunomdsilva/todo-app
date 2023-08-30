@@ -26,9 +26,9 @@
 				</div>
 			</div>
 
-			<p class="text-center text-sm text-terciary-400 dark:text-terciary-600 mt-8">
+			<!-- <p class="text-center text-sm text-terciary-400 dark:text-terciary-600 mt-8">
 				Drag and drop to reorder list
-			</p>
+			</p> -->
 		</Container>
 	</div>
 </template>
