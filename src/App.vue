@@ -1,7 +1,7 @@
 <template>
-	<div class="relative min-h-screen py-16 sm:py-28" :class="isDarkMode ? 'bg-terciary-950' : 'bg-terciary-100'">
+	<div class="relative min-h-screen py-16 sm:py-28 bg-terciary-100 dark:bg-terciary-950">
 		<img
-			:src="isDarkMode ? 'imgs/bg-desktop-dark.jpg' : 'imgs/bg-desktop-light.jpg'"
+			:src="darkTheme ? 'imgs/bg-desktop-dark.jpg' : 'imgs/bg-desktop-light.jpg'"
 			alt="todo app background"
 			class="absolute top-0 inset-x-0 w-full h-72 sm:h-96 object-cover max-sm:dark:object-left"
 		/>
@@ -11,7 +11,7 @@
 				<h2 class="text-5xl font-bold tracking-[0.42em] text-white mt-3.5">TODO</h2>
 
 				<button @click.prevent="toggleDarkMode()" class="p-2">
-					<component :is="isDarkMode ? IconSun : IconMoon" class="w-5 fill-white" />
+					<component :is="darkTheme ? IconSun : IconMoon" class="w-5 fill-white" />
 				</button>
 			</div>
 
@@ -40,15 +40,21 @@ import TodoList from "@/components/TodoList.vue";
 import TodoFilter from "@/components/TodoFilter.vue";
 import IconSun from "@/components/icons/IconSun.vue";
 import IconMoon from "@/components/icons/IconMoon.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
-const isDarkMode = ref(false);
+const darkTheme = ref(JSON.parse(localStorage.getItem("darkTheme") || false));
 
 function toggleDarkMode() {
-	console.log("toggleDarkMode");
-	isDarkMode.value = !isDarkMode.value;
-	document.documentElement.classList.toggle("dark", isDarkMode.value);
+	darkTheme.value = !darkTheme.value;
+	persistDarkTheme();
 }
+
+function persistDarkTheme() {
+	localStorage.setItem("darkTheme", darkTheme.value);
+	document.documentElement.classList.toggle("dark", darkTheme.value);
+}
+
+onMounted(() => persistDarkTheme());
 </script>
 
 <style>
